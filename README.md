@@ -1,4 +1,4 @@
-#Mandrill to AWS
+# Mandrill to AWS
 
 The scope of this project/repo to make a low-effort migration from Mandrill to Amazon SES.
 
