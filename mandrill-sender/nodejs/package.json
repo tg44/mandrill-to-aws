@@ -1,0 +1,17 @@
+{
+  "name": "smime-lambda-layer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^6.4.11",
+    "nodemailer-html-to-text": "^3.1.0",
+    "nodemailer-smime": "^1.1.0",
+    "smime": "^2.0.1"
+  }
+}

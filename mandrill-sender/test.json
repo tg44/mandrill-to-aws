@@ -1,0 +1,19 @@
+{
+  "key": "test",
+  "message": {
+    "html": "test html",
+    "subject": "testmail",
+    "from_email": "info@mymail.com",
+    "from_name": "MySender",
+    "to": [
+      {
+        "email": "test@mymail.com"
+      }
+    ],
+    "headers": {
+      "Reply-To": "no-reply@mymail.com"
+    },
+    "important": true,
+    "smime": true
+  }
+}
