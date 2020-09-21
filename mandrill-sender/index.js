@@ -17,31 +17,32 @@ var options = {
 
 exports.handler = function (event, context, callback) {
   //handle api-gateway
+  let data;
   if (event.httpMethod === 'POST') {
-    event = JSON.parse(event.body);
+    data = JSON.parse(event.body);
   }
   try {
-    if (event.key !== process.env.MANDRILL_KEY) {
+    if (data.key !== process.env.MANDRILL_KEY) {
       context.fail(
         {
           statusCode: 401,
-          body: JSON.stringify({error: "Authentication error, wrong toke!"}),
+          body: JSON.stringify({error: "Authentication error, wrong token!"}),
         }
       );
     }
     var mailOptions = {
-      from: event.message.from_name + " <" + event.message.from_email + ">",
-      to: event.message.to.map(o => o.email),
-      subject: event.message.subject,
-      html: event.message.html,
-      priority: (event.message.important) ? "high" : "normal",
-      headers: event.message.headers
+      from: data.message.from_name + " <" + data.message.from_email + ">",
+      to: data.message.to.map(o => o.email),
+      subject: data.message.subject,
+      html: data.message.html,
+      priority: (data.message.important) ? "high" : "normal",
+      headers: data.message.headers
     };
     var transporter = nodemailer.createTransport({
       SES: ses
     });
     transporter.use('compile', htmlToText());
-    if (event.message.smime) {
+    if (data.message.smime) {
       transporter.use('stream', smime(options));
     }
     transporter.sendMail(mailOptions, function (err, info) {

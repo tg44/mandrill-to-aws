@@ -53,8 +53,8 @@ You should add the SES sendMail policy to the execution role under the Permissio
 You should add an API Gateway Trigger too. (REST api with no security.)
 
 #### Resources
-Signing and sending a mail is timeconsumeing! You need to tune the timeout at least to 5s (but 10s is preferred).
+Signing and sending a mail is time-consuming! You need to tune the timeout at least to 5s (but 10s is preferred).
 
 ## Test
 You can test the function with customizing the given test.json. Also, you can test it with the endpoint;
-`curl -X POST -d @test.json ENDPOINT_FROM_AWS`
+`curl -X POST -H "Content-Type: application/json" -d @test.json ENDPOINT_FROM_AWS`

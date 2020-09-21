@@ -16,15 +16,15 @@ You should add the S3 access policy to the execution role under the Permissions 
     "Effect": "Allow",
     "Action": "s3:*",
     "Resource": [
-        "arn:aws:s3:::email-bouce-delivery/*"
+        "arn:aws:s3:::email-bounce-delivery/*"
     ]
 }
 ```
-(If you use another s3 bucket name, you should change `email-bouce-delivery` to that.)
+(If you use another s3 bucket name, you should change `email-bounce-delivery` to that.)
 
 #### Api gateway
 You should add an API Gateway Trigger too. (REST api with no security.)
 
 ## Test
 You can test the function with customizing the given `test.json`. Also, you can test it with the endpoint;
-`curl -X POST -d @test.json ENDPOINT_FROM_AWS`
+`curl -X POST -H "Content-Type: application/json" -d @test.json ENDPOINT_FROM_AWS`

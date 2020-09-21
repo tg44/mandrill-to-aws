@@ -1,6 +1,6 @@
 # SES info to S3
 
-This lambda serialize events from SES -> SNS to S3.
+This lambda serializes events from SES -> SNS to S3.
 
 ## Install
 #### Code
@@ -15,11 +15,14 @@ You should add the S3 access policy to the execution role under the Permissions 
     "Effect": "Allow",
     "Action": "s3:*",
     "Resource": [
-        "arn:aws:s3:::email-bouce-delivery/*"
+        "arn:aws:s3:::email-bounce-delivery/*"
     ]
 }
 ```
-(If you use another s3 bucket name, you should change `email-bouce-delivery` to that.)
+(If you use another s3 bucket name, you should change `email-bounce-delivery` to that.)
+
+#### SNS Trigger
+You should add an SNS Trigger too. Select the "Bounce, Complaint and Delivery notifications" topic.
 
 ## Test
 I think this is pretty hard to test. The given `test.json` is a really minimalistic test case. 
