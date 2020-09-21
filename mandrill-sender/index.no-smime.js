@@ -42,7 +42,7 @@ exports.handler = function (event, context, callback) {
       } else {
         const response = {
           statusCode: 200,
-          body: JSON.stringify([{_id: info.messageId, status: "queued"}]),
+          body: JSON.stringify([{_id: info.response, status: "queued"}]),
         };
         context.succeed(response);
       }
