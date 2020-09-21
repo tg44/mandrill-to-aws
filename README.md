@@ -2,7 +2,7 @@
 
 The scope of this project/repo to make a low-effort migration from Mandrill to Amazon SES.
 
-## Arhitecture and use-case
+## Architecture and use-case
 
 Flow:
  - Your app calls the mandrill-sender api endpoint.
@@ -23,24 +23,24 @@ After it is done, you will need to enable Bounce, Complaint and Delivery notific
 
 #### S3 config
 We should serialize the notifications, so we will need a new bucket to do so.
-I named mine `email-bouce-delivery`, but you can name it as you wish. 
+I named mine `email-bounce-delivery`, but you can name it as you wish. 
 After you created your bucket, you probably want to configure some kind of expiry on that bucket!
 
 #### SMIME cert (optional)
 If you want to send emails with s/mime signs, you need to get a cert for the sender mail address.
 
 #### Add ses info to s3
-Follow the readme in the ses-info-to-s3 subfolder.
+Follow the readme in the [ses-info-to-s3](./ses-info-to-s3/README.md) subfolder.
 
 #### Add mandrill sender
-Follow the readme in the madrill-sender subfolder.
+Follow the readme in the [madrill-sender](./mandrill-sender/README.md)) subfolder.
 (If you send out emails here as a test, your S3 bucket should populate with some example documents.)
 
 #### Add mandrill delivery info
-Follow the readme in the mandrill-delivery-info subfolder.
+Follow the readme in the [mandrill-delivery-info](./mandrill-delivery-info/README.md) subfolder.
 
 ## After install
-If you did all the steps in the install section, you will have two new api endpoints. Those can be used as a [send](https://mandrillapp.com/api/docs/messages.JSON.html#method=send) and [ifno](https://mandrillapp.com/api/docs/messages.JSON.html#method=info) endpoint.
+If you did all the steps in the install section, you will have two new api endpoints. Those can be used as a [send](https://mandrillapp.com/api/docs/messages.JSON.html#method=send) and [info](https://mandrillapp.com/api/docs/messages.JSON.html#method=info) endpoint.
 
 ## Price consideration
 Sending 1m emails per month is;

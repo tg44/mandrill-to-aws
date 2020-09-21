@@ -4,10 +4,11 @@ const bucket = process.env.BUCKET;
 
 exports.handler = async (event, context) => {
   //handle api-gateway
+  let data;
   if (event.httpMethod === 'POST') {
-    event = JSON.parse(event.body);
+    data = JSON.parse(event.body);
   }
-  if (event.key !== process.env.MANDRILL_KEY) {
+  if (data.key !== process.env.MANDRILL_KEY) {
     context.succeed(
       {
         statusCode: 401,
@@ -17,7 +18,7 @@ exports.handler = async (event, context) => {
   } else {
     const params = {
       Bucket: bucket,
-      Key: event.id
+      Key: data.id
     };
     try {
       const down = await s3.getObject(params).promise();
@@ -33,7 +34,7 @@ exports.handler = async (event, context) => {
         }
       }
       const response = {
-        "_id": event.id,
+        "_id": data.id,
         "sender": body.mail.source,
         "subject": body.mail.commonHeaders.subject,
         "email": body.mail.destination[0],
@@ -62,7 +63,7 @@ exports.handler = async (event, context) => {
               "status": "error",
               "code": 11,
               "name": "Unknown_Message",
-              "message": "No message exists with the id '" + event.id + "'"
+              "message": "No message exists with the id '" + data.id + "'"
             }
           ),
         }
